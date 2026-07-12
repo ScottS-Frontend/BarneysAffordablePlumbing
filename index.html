@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barney's Affordable Plumbing | Vacaville, CA Since 1999</title>
+<style>
+  :root{
+    --ink:#24211c;
+    --paper:#efeae0;
+    --paper-2:#e5ded0;
+    --navy:#1b3a5c;
+    --navy-dark:#12283f;
+    --copper:#a15c32;
+    --copper-light:#c98651;
+    --brass:#c9a227;
+    --oxide:#7a3b2e;
+    --white:#ffffff;
+    --font-display:'Arial Narrow', 'Helvetica Neue Condensed', Arial, sans-serif;
+    --font-body:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono:'Courier New', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font:inherit; cursor:pointer;}
+  h1,h2,h3{font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.01em; line-height:1.05;}
+
+  :focus-visible{outline:3px solid var(--copper-light); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy-dark);
+    border-bottom:4px solid var(--copper);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:1160px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:44px; height:44px; flex:none;
+    background:var(--copper);
+    border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .brand-mark svg{width:26px; height:26px; stroke:var(--white);}
+  .brand-name{color:var(--white); line-height:1.15;}
+  .brand-name .top{font-family:var(--font-display); font-weight:800; font-size:1.35rem; letter-spacing:0.03em; text-transform:uppercase;}
+  .brand-name .bottom{font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.14em; color:var(--brass); text-transform:uppercase;}
+
+  .call-btn{
+    display:flex; align-items:center; gap:8px;
+    background:var(--copper);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:4px;
+    font-weight:700;
+    font-family:var(--font-mono);
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    border:2px solid var(--copper);
+    transition:background 0.15s ease, transform 0.15s ease;
+    white-space:nowrap;
+  }
+  .call-btn:hover{background:var(--copper-light); border-color:var(--copper-light); transform:translateY(-1px);}
+  .call-btn svg{width:16px; height:16px; stroke:var(--white); flex:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--navy);
+    color:var(--white);
+    padding:64px 0 96px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 26px);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+    position:relative; z-index:1;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--brass); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--brass); display:inline-block;}
+  .hero h1{font-size:clamp(2.3rem, 5vw, 3.4rem); font-weight:800; margin-bottom:20px; max-width:11ch;}
+  .hero h1 em{font-style:normal; color:var(--copper-light);}
+  .hero p.sub{font-size:1.1rem; color:#dbe3ea; max-width:46ch; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--copper); color:var(--white); padding:15px 26px; border-radius:4px;
+    font-weight:700; font-family:var(--font-mono); letter-spacing:0.02em; font-size:1rem;
+    border:2px solid var(--copper); transition:all 0.15s ease; display:inline-flex; align-items:center; gap:10px;
+  }
+  .btn-primary:hover{background:var(--copper-light); border-color:var(--copper-light); transform:translateY(-2px);}
+  .btn-secondary{
+    background:transparent; color:var(--white); padding:15px 26px; border-radius:4px;
+    font-weight:700; font-family:var(--font-mono); letter-spacing:0.02em; font-size:1rem;
+    border:2px solid rgba(255,255,255,0.4); transition:all 0.15s ease;
+  }
+  .btn-secondary:hover{border-color:var(--white); background:rgba(255,255,255,0.06);}
+
+  /* ---------- WORK ORDER TICKET (signature element) ---------- */
+  .ticket-wrap{position:relative; animation:ticket-in 0.7s ease both; animation-delay:0.15s;}
+  @keyframes ticket-in{from{opacity:0; transform:translateY(14px) rotate(0deg);} to{opacity:1; transform:translateY(0) rotate(-1.4deg);}}
+  .ticket{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:2px;
+    padding:26px 26px 26px 34px;
+    box-shadow:0 22px 50px rgba(0,0,0,0.35);
+    position:relative;
+    transform:rotate(-1.4deg);
+  }
+  .ticket::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0; width:14px;
+    background-image:radial-gradient(circle, var(--navy) 2.5px, transparent 2.6px);
+    background-size:14px 16px;
+    background-position:center;
+    background-color:var(--paper);
+  }
+  .ticket-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    border-bottom:2px dashed var(--ink); padding-bottom:12px; margin-bottom:14px;
+  }
+  .ticket-head .label{font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--copper); margin-bottom:4px;}
+  .ticket-head h3{font-size:1.15rem; font-weight:800;}
+  .ticket-no{font-family:var(--font-mono); font-size:0.75rem; text-align:right; color:#6b6558;}
+  .ticket-rows{display:flex; flex-direction:column; gap:9px; margin-bottom:16px;}
+  .ticket-row{display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.88rem;}
+  .ticket-row svg{width:15px; height:15px; stroke:var(--navy); flex:none;}
+  .ticket-foot{
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:2px dashed var(--ink); padding-top:14px;
+  }
+  .ticket-foot .amt-label{font-family:var(--font-mono); font-size:0.7rem; color:#6b6558; text-transform:uppercase; letter-spacing:0.1em;}
+  .ticket-foot .amt{font-family:var(--font-display); font-weight:800; font-size:1.4rem; color:var(--navy);}
+  .stamp{
+    position:absolute; right:-14px; top:-18px;
+    border:3px solid var(--oxide);
+    color:var(--oxide);
+    border-radius:50%;
+    width:96px; height:96px;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:var(--font-display); font-weight:800; font-size:0.72rem; letter-spacing:0.03em; text-transform:uppercase;
+    transform:rotate(11deg);
+    opacity:0.9;
+    mix-blend-mode:multiply;
+    background:transparent;
+    line-height:1.15;
+  }
+
+  /* ---------- TRUST BAR ---------- */
+  .trust{
+    background:var(--paper-2);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    padding:22px 0;
+  }
+  .trust-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; text-align:center;}
+  .trust-item{display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .trust-item svg{width:26px; height:26px; stroke:var(--copper);}
+  .trust-item span{font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.03em; color:var(--ink); font-weight:700; text-transform:uppercase;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:76px 0;}
+  .sec-head{max-width:640px; margin-bottom:44px;}
+  .sec-eyebrow{
+    font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--copper); margin-bottom:10px; display:flex; align-items:center; gap:10px;
+  }
+  .sec-eyebrow::before{content:""; width:22px; height:2px; background:var(--copper); display:inline-block;}
+  .sec-head h2{font-size:clamp(1.7rem, 3.4vw, 2.3rem); font-weight:800; color:var(--navy);}
+  .sec-head p{margin-top:12px; color:#4b4740; font-size:1.02rem; max-width:56ch;}
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .service-card{
+    background:var(--white);
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:6px;
+    padding:26px;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .service-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(18,40,63,0.12); border-color:var(--copper-light);}
+  .service-icon{
+    width:48px; height:48px; border-radius:6px;
+    background:var(--navy); display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px;
+  }
+  .service-icon svg{width:26px; height:26px; stroke:var(--brass);}
+  .service-card h3{font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:8px; text-transform:none; letter-spacing:0;}
+  .service-card p{font-size:0.93rem; color:#5c574c;}
+
+  /* ---------- SERVICE AREA ---------- */
+  .area-section{background:var(--navy); color:var(--white);}
+  .area-section .sec-eyebrow{color:var(--brass);}
+  .area-section .sec-eyebrow::before{background:var(--brass);}
+  .area-section .sec-head h2{color:var(--white);}
+  .area-section .sec-head p{color:#c8d2db;}
+  .area-route{
+    display:flex; align-items:center; flex-wrap:wrap; gap:0;
+    font-family:var(--font-mono);
+  }
+  .area-chip{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:0.92rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+  .area-dot{width:22px; height:2px; background:var(--copper-light); margin:0 4px;}
+  .area-note{margin-top:26px; color:#c8d2db; font-size:0.95rem; max-width:52ch;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; align-items:center;}
+  .about-photo{
+    aspect-ratio:4/5;
+    border-radius:6px;
+    background:
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+    position:relative;
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-photo svg{width:56%; height:56%; stroke:rgba(255,255,255,0.16); fill:none;}
+  .about-photo .badge{
+    position:absolute; bottom:18px; left:18px; right:18px;
+    background:rgba(18,40,63,0.85);
+    color:var(--white);
+    padding:14px 16px;
+    border-radius:4px;
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    border-left:3px solid var(--copper-light);
+  }
+  .about-copy h2{color:var(--navy); font-size:clamp(1.7rem, 3vw, 2.2rem); margin-bottom:18px; font-weight:800;}
+  .about-copy p{color:#4b4740; margin-bottom:16px; font-size:1.02rem; max-width:58ch;}
+  .about-copy p strong{color:var(--navy);}
+  .founder-line{
+    display:flex; gap:14px; align-items:flex-start;
+    margin-top:22px; padding-top:22px; border-top:1px solid rgba(0,0,0,0.1);
+  }
+  .founder-line svg{width:22px; height:22px; stroke:var(--copper); flex:none; margin-top:2px;}
+  .founder-line p{font-size:0.95rem; color:#5c574c; margin:0;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .testi-card{
+    background:var(--white);
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:4px;
+    padding:24px;
+    position:relative;
+  }
+  .testi-card::before{
+    content:"";
+    position:absolute; left:0; top:16px; bottom:16px; width:3px;
+    background:var(--copper);
+  }
+  .stars{display:flex; gap:3px; margin-bottom:12px;}
+  .stars svg{width:15px; height:15px; fill:var(--brass); stroke:none;}
+  .testi-card p.quote{font-size:0.96rem; color:var(--ink); margin-bottom:16px; font-style:italic;}
+  .testi-name{font-family:var(--font-mono); font-size:0.8rem; color:var(--copper); font-weight:700; text-transform:uppercase; letter-spacing:0.04em;}
+
+  /* ---------- CONTACT / CTA ---------- */
+  .contact-section{background:var(--paper-2);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:52px;}
+  .contact-info h2{color:var(--navy); font-size:clamp(1.7rem, 3vw, 2.2rem); font-weight:800; margin-bottom:16px;}
+  .contact-info p{color:#4b4740; margin-bottom:26px; max-width:44ch;}
+  .info-row{display:flex; gap:14px; align-items:flex-start; margin-bottom:20px;}
+  .info-row svg{width:20px; height:20px; stroke:var(--copper); flex:none; margin-top:3px;}
+  .info-row .label{font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:#7a7568; margin-bottom:3px;}
+  .info-row .value{font-weight:700; color:var(--ink);}
+  .info-row .value.phone{font-size:1.3rem; font-family:var(--font-mono); color:var(--navy);}
+
+  .estimate-form{
+    background:var(--white);
+    border-radius:6px;
+    padding:32px;
+    box-shadow:0 18px 40px rgba(18,40,63,0.1);
+  }
+  .estimate-form .form-eyebrow{font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--copper); margin-bottom:8px;}
+  .estimate-form h3{color:var(--navy); font-size:1.3rem; font-weight:800; margin-bottom:20px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-family:var(--font-mono); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; color:#5c574c; margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:11px 12px; border:1.5px solid #d8d2c4; border-radius:4px;
+    font-family:var(--font-body); font-size:0.95rem; background:var(--paper); color:var(--ink);
+    transition:border-color 0.15s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--copper); outline:none;}
+  .field textarea{resize:vertical; min-height:80px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .submit-btn{
+    width:100%; background:var(--copper); color:var(--white); padding:14px; border:none; border-radius:4px;
+    font-family:var(--font-mono); font-weight:700; font-size:0.98rem; letter-spacing:0.02em; margin-top:6px;
+    transition:background 0.15s ease;
+  }
+  .submit-btn:hover{background:var(--copper-light);}
+  .form-note{font-size:0.78rem; color:#8a8477; margin-top:10px; text-align:center;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy-dark); color:#c8d2db; padding:36px 0;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-brand{display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.85rem; color:var(--white);}
+  .footer-links{display:flex; gap:22px; font-family:var(--font-mono); font-size:0.82rem;}
+  .footer-links a:hover{color:var(--brass);}
+  .footer-fine{font-family:var(--font-mono); font-size:0.75rem; color:#7d8b98; margin-top:18px; text-align:center;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
+    .ticket-wrap{max-width:420px;}
+    .trust-grid{grid-template-columns:repeat(2, 1fr);}
+    .services-grid{grid-template-columns:repeat(2, 1fr);}
+    .about-grid{grid-template-columns:1fr;}
+    .about-photo{max-width:340px; margin:0 auto;}
+    .testi-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .header-inner{padding:12px 16px;}
+    .brand-name .top{font-size:1.1rem;}
+    .call-btn span.full{display:none;}
+    .hero{padding:44px 0 64px;}
+    .trust-grid{grid-template-columns:1fr 1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-inner{flex-direction:column; text-align:center;}
+    .stamp{width:80px; height:80px; font-size:0.62rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l4 4-8 8-4-4 8-8z"/><path d="M6 14l-2 2 2 2"/><path d="M17 7l1-1"/></svg>
+      </div>
+      <div class="brand-name">
+        <div class="top">Barney's</div>
+        <div class="bottom">Affordable Plumbing</div>
+      </div>
+    </div>
+    <a href="tel:7074500444" class="call-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="full">(707) 450-0444</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Vacaville, CA &middot; Family-Owned Since 1999</div>
+      <h1>Honest plumbing work at a <em>fair</em> price.</h1>
+      <p class="sub">Three generations of local know-how, one straight-talking crew. No upsells, no runaround &mdash; just the fix, done right, with a price you agreed to before we start.</p>
+      <div class="hero-ctas">
+        <a href="tel:7074500444" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;stroke:currentColor;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92z"/></svg>
+          Call Now
+        </a>
+        <a href="#estimate" class="btn-secondary">Request Free Estimate</a>
+      </div>
+    </div>
+
+    <div class="ticket-wrap">
+      <div class="ticket">
+        <div class="stamp">Trusted<br>Since<br>1999</div>
+        <div class="ticket-head">
+          <div>
+            <div class="label">Service Call</div>
+            <h3>Today's Work Order</h3>
+          </div>
+          <div class="ticket-no">No. 07071999<br>Vacaville, CA</div>
+        </div>
+        <div class="ticket-rows">
+          <div class="ticket-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Free, no-obligation estimate</div>
+          <div class="ticket-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Licensed, bonded &amp; insured</div>
+          <div class="ticket-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Senior &amp; military discounts</div>
+          <div class="ticket-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 100+ five-star local reviews</div>
+        </div>
+        <div class="ticket-foot">
+          <div>
+            <div class="amt-label">Estimate</div>
+            <div class="amt">$0.00</div>
+          </div>
+          <div>
+            <div class="amt-label">Status</div>
+            <div class="amt" style="font-size:1rem;">Open Today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+      <span>Licensed &amp; Insured</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+      <span>Family-Owned Since 1999</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+      <span>Senior &amp; Military Discounts</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+      <span>100+ 5-Star Reviews</span>
+    </div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">What We Fix</div>
+      <h2>Full-service residential plumbing</h2>
+      <p>From a dripping faucet to a full water main replacement &mdash; if it involves a pipe, we've probably already fixed one just like it in your neighborhood.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h10a4 4 0 0 1 0 8H8"/><circle cx="18" cy="8" r="3"/><path d="M12 12V6a2 2 0 0 1 2-2h2"/></svg></div>
+        <h3>Drain Cleaning</h3>
+        <p>Slow or clogged drains cleared fast with pro-grade equipment on every van.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="3"/><path d="M10 8h4M10 12h4M10 16h4"/></svg></div>
+        <h3>Water Heaters</h3>
+        <p>Repair or full replacement &mdash; tank and tankless &mdash; installed right the first time.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10V6a3 3 0 0 1 6 0v1"/><path d="M4 10h12v2a6 6 0 0 1-12 0v-2z"/><path d="M10 18v3"/></svg></div>
+        <h3>Faucets &amp; Fixtures</h3>
+        <p>Kitchen and bath faucets, toilets, and fixtures repaired or upgraded.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>Garbage Disposals</h3>
+        <p>Jammed or dead disposal? Repaired or swapped for a new one same-day.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h6M16 12h6M8 12a4 4 0 0 1 4-4M16 12a4 4 0 0 1-4 4"/><circle cx="12" cy="12" r="1.5"/></svg></div>
+        <h3>Water Mains</h3>
+        <p>Leaking or aging main lines diagnosed and replaced with minimal digging.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M8 10a4 4 0 0 1 8 0"/><path d="M5 7c0-1 1-2 3-2M19 7c0-1-1-2-3-2M12 4V2"/></svg></div>
+        <h3>Sprinkler Systems</h3>
+        <p>Lawn and irrigation line repairs so your yard stops flooding your bill.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="area-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Where We Work</div>
+      <h2>Serving the greater Vacaville area</h2>
+      <p>Same crew, same fair pricing, wherever the call comes from.</p>
+    </div>
+    <div class="area-route">
+      <span class="area-chip">Vacaville</span><span class="area-dot"></span>
+      <span class="area-chip">Fairfield</span><span class="area-dot"></span>
+      <span class="area-chip">Suisun City</span><span class="area-dot"></span>
+      <span class="area-chip">Dixon</span><span class="area-dot"></span>
+      <span class="area-chip">Winters</span>
+    </div>
+    <p class="area-note">Not sure if you're in range? Call us &mdash; if we can't help directly, we'll point you to someone who can.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h10a4 4 0 0 1 0 8H8"/><circle cx="18" cy="8" r="3"/><path d="M12 12V6a2 2 0 0 1 2-2h2"/></svg>
+      <div class="badge">Photo of the crew goes here &mdash; a real job-site or team shot builds trust fast.</div>
+    </div>
+    <div class="about-copy">
+      <h2>Still local. Still honest. Still Barney's.</h2>
+      <p><strong>Founded in 1999 by Barney Babb</strong>, this shop was built on a simple idea: quote it straight, fix it right, and treat every home like it's your own family's.</p>
+      <p>Today, <strong>Matt and Tabbi Rivenbark</strong> carry that same standard forward &mdash; same crew, same fair pricing, same commitment to doing the job once instead of upselling a fix you don't need.</p>
+      <div class="founder-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+        <p>Every estimate is free and given in person or over the phone &mdash; no surprise line items when the job's done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">What Neighbors Say</div>
+      <h2>100+ five-star reviews across Yelp &amp; Google</h2>
+      <p>A sample of what folks in Vacaville have said after a service call. <em>(Placeholder text &mdash; swap in real, permissioned reviews before this goes live.)</em></p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+        </div>
+        <p class="quote">"Showed up on time, quoted the price upfront, and didn't try to sell me anything I didn't need. Water heater's been perfect since."</p>
+        <div class="testi-name">&mdash; Vacaville Homeowner</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+        </div>
+        <p class="quote">"Called about a backed-up drain and someone was out the same afternoon. Fair price, no games. This is our go-to now."</p>
+        <div class="testi-name">&mdash; Fairfield Customer</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 21.5 12 17.5 5.5 21.5 7 14.5 2 9.5 9 9 12 2"/></svg>
+        </div>
+        <p class="quote">"We've used them three times over the years for different things. Always the same honest, no-pressure service. Highly recommend."</p>
+        <div class="testi-name">&mdash; Long-Time Client</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="estimate">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <h2>Get your free estimate</h2>
+      <p>Reach out by phone for the fastest response, or send us a few details and we'll call you back same-day.</p>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92z"/></svg>
+        <div><div class="label">Call or Text</div><div class="value phone">(707) 450-0444</div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        <div><div class="label">Email</div><div class="value">info@barneysaffordableplumbing.com</div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <div><div class="label">Service Area</div><div class="value">Vacaville, Fairfield, Suisun City, Dixon &amp; Winters</div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div><div class="label">Hours</div><div class="value">Mon&ndash;Fri 8am&ndash;5pm &middot; Sat 8am&ndash;2pm &middot; Sun Closed</div></div>
+      </div>
+    </div>
+
+    <form class="estimate-form" onsubmit="event.preventDefault(); this.querySelector('.submit-btn').textContent='Request Sent \u2713';">
+      <div class="form-eyebrow">Free Estimate Request</div>
+      <h3>Tell us what's going on</h3>
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" type="tel" placeholder="(707) 555-0123" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="service">Service Needed</label>
+        <select id="service">
+          <option>Drain Cleaning</option>
+          <option>Water Heater</option>
+          <option>Faucet / Fixture</option>
+          <option>Garbage Disposal</option>
+          <option>Water Main</option>
+          <option>Sprinkler System</option>
+          <option>Something Else</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="details">Details</label>
+        <textarea id="details" placeholder="What's happening? The more detail, the faster we can help."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Request Free Estimate</button>
+      <p class="form-note">We typically respond within one business day.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;stroke:var(--brass);"><path d="M14 4l4 4-8 8-4-4 8-8z"/></svg>
+      Barney's Affordable Plumbing &middot; Vacaville, CA &middot; Est. 1999
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#estimate">Contact</a>
+    </div>
+  </div>
+  <p class="footer-fine">Licensed, bonded &amp; insured. Free in-person estimates. &copy; 2026 Barney's Affordable Plumbing Inc.</p>
+</footer>
+
+</body>
+</html>
