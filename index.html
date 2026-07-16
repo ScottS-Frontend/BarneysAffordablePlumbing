@@ -240,38 +240,30 @@
   .area-dot{width:22px; height:2px; background:var(--copper-light); margin:0 4px;}
   .area-note{margin-top:26px; color:#c8d2db; font-size:0.95rem; max-width:52ch;}
 
-  /* ---------- ABOUT ---------- */
-  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; align-items:center;}
-  .about-photo{
-    aspect-ratio:4/5;
-    border-radius:6px;
-    background:
-      linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
-    position:relative;
-    overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .about-photo svg{width:56%; height:56%; stroke:rgba(255,255,255,0.16); fill:none;}
-  .about-photo .badge{
-    position:absolute; bottom:18px; left:18px; right:18px;
-    background:rgba(18,40,63,0.85);
-    color:var(--white);
-    padding:14px 16px;
-    border-radius:4px;
-    font-family:var(--font-mono);
-    font-size:0.78rem;
-    letter-spacing:0.04em;
-    border-left:3px solid var(--copper-light);
-  }
-  .about-copy h2{color:var(--navy); font-size:clamp(1.7rem, 3vw, 2.2rem); margin-bottom:18px; font-weight:800;}
-  .about-copy p{color:#4b4740; margin-bottom:16px; font-size:1.02rem; max-width:58ch;}
-  .about-copy p strong{color:var(--navy);}
-  .founder-line{
-    display:flex; gap:14px; align-items:flex-start;
-    margin-top:22px; padding-top:22px; border-top:1px solid rgba(0,0,0,0.1);
-  }
-  .founder-line svg{width:22px; height:22px; stroke:var(--copper); flex:none; margin-top:2px;}
-  .founder-line p{font-size:0.95rem; color:#5c574c; margin:0;}
+/* ---------- ABOUT ---------- */
+.about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; align-items:center;}
+.about-photo{
+  aspect-ratio:17/10;
+  border-radius:6px;
+  position:relative;
+  overflow:hidden;
+}
+.about-photo img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.about-copy h2{color:var(--navy); font-size:clamp(1.7rem, 3vw, 2.2rem); margin-bottom:18px; font-weight:800;}
+.about-copy p{color:#4b4740; margin-bottom:16px; font-size:1.02rem; max-width:58ch;}
+.about-copy p strong{color:var(--navy);}
+.founder-line{
+  display:flex; gap:14px; align-items:flex-start;
+  margin-top:22px; padding-top:22px; border-top:1px solid rgba(0,0,0,0.1);
+}
+.founder-line svg{width:22px; height:22px; stroke:var(--copper); flex:none; margin-top:2px;}
+.founder-line p{font-size:0.95rem; color:#5c574c; margin:0;}
 
   /* ---------- TESTIMONIALS ---------- */
   .testi-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
@@ -509,11 +501,18 @@
 </section>
 
 <section id="about">
+  <section id="about">
   <div class="wrap about-grid">
+    <div class="about-photo">
+      <img src="assets/affordableplumbingvan.jpg" alt="Affordable Plumbing service van">
+    </div>
+
+
+  <!-- <div class="wrap about-grid">
     <div class="about-photo">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h10a4 4 0 0 1 0 8H8"/><circle cx="18" cy="8" r="3"/><path d="M12 12V6a2 2 0 0 1 2-2h2"/></svg>
       <div class="badge">Photo of the crew goes here &mdash; a real job-site or team shot builds trust fast.</div>
-    </div>
+    </div> -->
     <div class="about-copy">
       <h2>Still local. Still honest. Still Barney's.</h2>
       <p><strong>Founded in 1999 by Barney Babb</strong>, this shop was built on a simple idea: quote it straight, fix it right, and treat every home like it's your own family's.</p>
