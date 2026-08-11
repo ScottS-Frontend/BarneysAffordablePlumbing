@@ -248,22 +248,25 @@
       </div>
     </div>
 
-    <form class="estimate-form" onsubmit="event.preventDefault(); this.querySelector('.submit-btn').textContent='Request Sent \u2713';">
+    <form class="estimate-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="this.querySelector('.submit-btn').textContent='Sending…'; this.querySelector('.submit-btn').disabled=true;">
+      <input type="hidden" name="_subject" value="New estimate request from Barney's website">
+      <input type="hidden" name="_next" value="https://barneysaffordableplumbing.com/#estimate">
+
       <div class="form-eyebrow">Free Estimate Request</div>
       <h3>Tell us what's going on</h3>
       <div class="form-row">
         <div class="field">
           <label for="name">Name</label>
-          <input id="name" type="text" placeholder="Your name" required>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
         </div>
         <div class="field">
           <label for="phone">Phone</label>
-          <input id="phone" type="tel" placeholder="(707) 555-0123" required>
+          <input id="phone" name="phone" type="tel" placeholder="(707) 555-0123" required>
         </div>
       </div>
       <div class="field">
         <label for="service">Service Needed</label>
-        <select id="service">
+        <select id="service" name="service">
           <option>Drain Cleaning</option>
           <option>Water Heater</option>
           <option>Faucet / Fixture</option>
@@ -275,10 +278,10 @@
       </div>
       <div class="field">
         <label for="details">Details</label>
-        <textarea id="details" placeholder="What's happening? The more detail, the faster we can help."></textarea>
+        <textarea id="details" name="details" placeholder="What's happening? The more detail, the faster we can help."></textarea>
       </div>
       <button type="submit" class="submit-btn">Request Free Estimate</button>
-      <p class="form-note">We typically respond within one business day.</p>
+      <p class="form-note">We typically respond within one business day. Your info is sent securely.</p>
     </form>
   </div>
 </section>
